@@ -7,7 +7,7 @@
   </script>
   
   <button 
-    class="bg-{color}-100 p-4 rounded-xl w-full text-left hover:bg-{color}-200 transition-colors"
+    class="bg-primary-purple/50 p-4 rounded-xl w-full text-left hover:bg-{color}-200 transition-colors"
     on:click={onClick}
   >
     <div class="flex items-center gap-2">

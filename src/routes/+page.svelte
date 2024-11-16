@@ -7,6 +7,7 @@
     import UnionProgress from '$lib/components/UnionProgress.svelte';
     import ActionCard from '$lib/components/ActionCard.svelte';
     import Navigation from '$lib/components/Navigation.svelte';
+    import SurveilAvoid from '$lib/components/SurveilAvoid.svelte';
     
     let userData = {
       name: "Worker",
@@ -46,7 +47,7 @@
           color="primary-green"
         />
       </div>
-      
+<SurveilAvoid />
       <!-- Map component would go here -->
     </div>
     
