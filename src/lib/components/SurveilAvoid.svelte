@@ -36,7 +36,7 @@
     };
   </script>
   
-  <div class="bg-surface-light rounded-xl  {isExpanded ? 'h-96' : 'h-48'} transition-all duration-300">
+  <div class="bg-surface-light rounded-xl overflow-hidden {isExpanded ? 'h-96' : 'h-48'} transition-all duration-300">
     <!-- Header -->
     <div class="p-4 flex items-center justify-between bg-surface-dim border-b">
       <div class="flex items-center gap-2">
