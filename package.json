@@ -28,6 +28,9 @@
 		"vite": "^5.0.3"
 	},
 	"dependencies": {
-		"lucide-svelte": "^0.460.1"
+		"chart.js": "^4.4.6",
+		"lucide-svelte": "^0.460.1",
+		"p5-svelte": "^3.1.2",
+		"recharts": "^2.13.3"
 	}
 }
