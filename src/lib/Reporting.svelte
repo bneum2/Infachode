@@ -9,6 +9,25 @@
   let anonymousMessage = '';
   let chartCanvas;
 
+  // Added discussion posts array with some initial messages
+  let discussionPosts = [
+    {
+      date: '2024-03-16',
+      message: "Mr. Chrysanthemum made us work through lunch again today. This is the third time this week!",
+      id: 1
+    },
+    {
+      date: '2024-03-15',
+      message: "Anyone else notice how Mr. Chrysanthemum always schedules 'emergency overtime' right before holidays? Starting to feel like it's not a coincidence...",
+      id: 2
+    },
+    {
+      date: '2024-03-14',
+      message: "Mr. Chrysanthemum denied my vacation request for my daughter's graduation. Said we're 'too short-staffed' but he's on vacation next week.",
+      id: 3
+    }
+  ];
+
   // Sample data stays the same
   const workloadData = [
     { week: 'Week 1', rating: 6 },
@@ -38,9 +57,17 @@
     overtimeHours = '';
   };
 
+  // Updated submitAnonymousPost function
   const submitAnonymousPost = () => {
-    console.log('Anonymous message submitted:', anonymousMessage);
-    anonymousMessage = '';
+    if (anonymousMessage.trim()) {
+      const newPost = {
+        date: new Date().toISOString().split('T')[0],
+        message: anonymousMessage,
+        id: discussionPosts.length + 1
+      };
+      discussionPosts = [newPost, ...discussionPosts];
+      anonymousMessage = '';
+    }
   };
 
   // Chart initialization
@@ -78,7 +105,7 @@
         datasets: [{
           label: 'Daily Burnout Level',
           data: data,
-          borderColor: '#7C3AED', // Updated to match primary-purple
+          borderColor: '#7C3AED',
           backgroundColor: 'rgba(124, 58, 237, 0.1)',
           tension: 0.3,
           pointRadius: 3,
@@ -252,7 +279,12 @@
 
     {#if activeTab === 'discussion'}
       <div class="bg-white rounded-lg shadow-md p-4">
-        <h2 class="text-lg font-semibold mb-4">Anonymous Discussion Board</h2>
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-6 h-6 text-primary-purple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <h2 class="text-lg font-semibold">Anonymous Discussion Board</h2>
+        </div>
         <div class="space-y-4">
           <textarea
             class="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-purple focus:border-transparent"
@@ -266,6 +298,18 @@
           >
             Post Anonymously
           </button>
+
+          <!-- Discussion Posts -->
+          <div class="space-y-4 mt-6">
+            {#each discussionPosts as post (post.id)}
+              <div class="p-4 bg-gray-50 rounded-lg border border-gray-100 transition-all">
+                <div class="flex justify-between items-start mb-2">
+                  <p class="text-sm text-gray-500">Anonymous • {post.date}</p>
+                </div>
+                <p class="text-gray-700">{post.message}</p>
+              </div>
+            {/each}
+          </div>
         </div>
       </div>
     {/if}
